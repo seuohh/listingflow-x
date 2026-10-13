@@ -132,7 +132,7 @@
       margin: 0 0 20px;
       max-width: 560px;
     }
-    .cta { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 18px; }
+    .cta { display: flex; gap: 12px; flex-wrap: wrap; }
     .btn {
       display: inline-flex; align-items: center; gap: 8px;
       font-size: 15px; font-weight: 700;
@@ -150,9 +150,6 @@
     }
     .btn.ghost:hover { background: rgba(255,255,255,0.08); }
 
-    .stats { display: flex; gap: 34px; flex-wrap: wrap; }
-    .stat b { display: block; font-size: 22px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; }
-    .stat span { font-size: 13px; color: rgba(255,255,255,0.62); }
 
     /* 히어로 우측: 상장 흐름 패널 */
     .panel {
@@ -179,16 +176,6 @@
     .node .t { font-size: 15px; font-weight: 800; margin: 3px 0 8px; letter-spacing: -0.01em; }
     .node ul { margin: 0; padding: 0; list-style: none; font-size: 12.5px; color: rgba(255,255,255,0.72); display: flex; flex-direction: column; gap: 3px; }
     .arrow { align-self: center; color: rgba(255,255,255,0.4); font-size: 18px; }
-    .panel .pf {
-      margin-top: 12px; padding-top: 10px;
-      border-top: 1px solid rgba(255,255,255,0.12);
-      display: flex; gap: 8px; flex-wrap: wrap;
-      font-size: 12px; color: rgba(255,255,255,0.75);
-    }
-    .panel .pf span {
-      background: rgba(255,255,255,0.08); border-radius: 999px; padding: 4px 10px;
-    }
-    .panel .pf .lbl { background: none; padding-left: 0; color: rgba(255,255,255,0.55); font-weight: 600; }
 
     /* ───────── 하단 영역: 네 기둥 ───────── */
     .pillars { padding: 14px 0 10px; }
@@ -197,7 +184,6 @@
       margin-bottom: 10px; flex-wrap: wrap;
     }
     .pillars h2 { font-size: 18px; margin: 0; letter-spacing: -0.02em; font-weight: 800; }
-    .pillars .head p { margin: 0; font-size: 14px; color: var(--muted); }
     .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
     .card {
       background: var(--surface);
@@ -216,11 +202,6 @@
     }
     .card h3 { margin: 2px 0 0; font-size: 16px; letter-spacing: -0.01em; font-weight: 800; }
     .card p { margin: 0; font-size: 13px; color: var(--muted); }
-    .card .tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
-    .card .tags span {
-      font-size: 11.5px; font-weight: 600; color: var(--muted);
-      border: 1px solid var(--line); border-radius: 6px; padding: 2px 7px;
-    }
 
     footer {
       border-top: 1px solid var(--line);
@@ -242,7 +223,6 @@
       .flow { grid-template-columns: 1fr; }
       .arrow { transform: rotate(90deg); justify-self: center; }
       .grid { grid-template-columns: 1fr; }
-      .stats { gap: 22px; }
     }
   </style>
 </head>
@@ -274,12 +254,6 @@
             <a class="btn primary" href="#ipo">서비스 살펴보기 →</a>
             <a class="btn ghost" href="/contact">도입 문의</a>
           </div>
-          <div class="stats">
-            <div class="stat"><b>3</b><span>시장 · 상장 전 과정</span></div>
-            <div class="stat"><b>52</b><span>업무 화면</span></div>
-            <div class="stat"><b>398</b><span>정리된 항목</span></div>
-            <div class="stat"><b>5</b><span>계산 시뮬레이션</span></div>
-          </div>
         </div>
 
         <aside class="panel" aria-label="상장 로드맵 요약">
@@ -303,10 +277,6 @@
               <ul><li>형식요건 · 질적심사</li><li>상장 기준 · 체크리스트</li><li>상법 · 세무 · 주총</li></ul>
             </div>
           </div>
-          <div class="pf">
-            <span class="lbl">계산 시뮬레이션</span>
-            <span>공모가 밴드</span><span>비상장사 가치평가</span><span>상장일 기준가격</span><span>최소공모비율</span><span>주주총회</span>
-          </div>
         </aside>
       </div>
     </div>
@@ -316,32 +286,27 @@
     <div class="wrap">
       <div class="head">
         <h2>네 가지 업무를 한 시스템에서</h2>
-        <p>한국거래소 기업실사 점검표와 작성가이드를 기반으로 구성 · 모든 답에 규정·공시 출처를 함께 제시</p>
       </div>
       <div class="grid">
         <article class="card" id="ipo">
           <div class="ic">IPO</div>
           <h3>상장 전 과정 안내</h3>
           <p>준비, 신청 서류, 심사, 증권신고서, 공모, 상장 후 관리까지 단계별 실무를 안내합니다.</p>
-          <div class="tags"><span>타임라인</span><span>체크리스트</span><span>문서 작성·검증</span></div>
         </article>
         <article class="card" id="ir">
           <div class="ic">IR</div>
           <h3>IR 자료와 배포</h3>
           <p>회사 자료를 올리면 IR 자료와 IR Deck 초안을 만들고, 투자자 명단으로 배포합니다.</p>
-          <div class="tags"><span>IR 상담</span><span>Deck 자동 생성</span><span>명단 배포</span></div>
         </article>
         <article class="card" id="pr">
           <div class="ic">PR</div>
           <h3>보도자료와 기획기사</h3>
           <p>문의 내용으로 초안을 만들고 담당자 검토를 거쳐 기자에게 보냅니다. 사실관계는 공시와 맞춥니다.</p>
-          <div class="tags"><span>초안 생성</span><span>검토</span><span>기자 배포</span></div>
         </article>
         <article class="card" id="disclosure">
           <div class="ic">공시</div>
           <h3>공시 제도와 상담</h3>
           <p>시장별 공시 규정 원문을 정리하고, 자주 묻는 20가지 유형과 서술형 문의에 답합니다.</p>
-          <div class="tags"><span>코넥스·코스닥·유가</span><span>공정공시</span><span>서식 작성</span></div>
         </article>
       </div>
     </div>
@@ -349,8 +314,7 @@
 
   <footer>
     <div class="wrap">
-      <span>© 2026 리스팅플로우 X · AI 답변은 참고용 1차 분류이며 최종 판단은 담당자 검토가 필요합니다.</span>
-      <a href="mailto:seuohh@gmail.com">seuohh@gmail.com</a>
+      <span>© 2026 리스팅플로우 X</span>
     </div>
   </footer>
 
