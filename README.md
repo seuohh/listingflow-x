@@ -1,29 +1,38 @@
 # listingflow-x
 
-## 현재 상태
+Cloudflare Workers(정적 자산) 로 배포되는 정적 사이트입니다.
 
-초기 구조만 올라간 상태이며, 아래 파일들은 아직 비어 있습니다.
+## 구조
 
-| 파일 | 용도 | 상태 |
+| 경로 | 용도 | 상태 |
 |---|---|---|
-| `listingflow-x.html` | 메인 페이지 (UI) | 비어 있음 |
-| `listingflow-x.txt` | 기획 / 메모 | 비어 있음 |
+| `public/index.html` | 메인 페이지 (배포되는 파일) | 비어 있음 |
+| `listingflow-x.txt` | 기획 / 메모 (배포되지 않음) | 비어 있음 |
+| `wrangler.jsonc` | Cloudflare Workers 배포 설정 | 완료 |
+
+## 배포
+
+GitHub `main` 브랜치에 푸시하면 Cloudflare Workers Builds 가 자동으로
+`npx wrangler deploy` 를 실행해 `public/` 폴더를 배포합니다.
+
+- Cloudflare 프로젝트: Workers & Pages > listingflow-x
+- 배포 주소: https://listingflow-x.seuohh.workers.dev
 
 ## 추후 작업
 
 1. `listingflow-x.txt` 에 기획 내용과 기능 목록을 정리한다.
-2. `listingflow-x.html` 에 실제 페이지 내용을 작성한다.
-3. 필요하면 CSS, JS 파일을 분리하고 README 에 구조를 갱신한다.
+2. `public/index.html` 에 실제 페이지 내용을 작성한다.
+3. 필요하면 `public/` 안에 CSS, JS 파일을 추가한다.
 
 ## 작업 반영 방법
-
-파일을 수정한 뒤 이 폴더에서 아래 명령을 실행하면 GitHub 에 반영됩니다.
 
 ```
 git add -A
 git commit -m "변경 내용 요약"
 git push
 ```
+
+푸시하면 Cloudflare 에서 자동 배포됩니다.
 
 ## 저장소
 
