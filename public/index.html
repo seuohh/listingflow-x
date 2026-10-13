@@ -84,8 +84,6 @@
       box-shadow: 0 6px 16px rgba(47, 107, 255, 0.35);
     }
     .brand-sub { font-weight: 500; font-size: 14.5px; color: rgba(255,255,255,0.72); letter-spacing: 0; }
-    .menu { display: flex; gap: 28px; font-size: 14.5px; font-weight: 500; color: rgba(255,255,255,0.78); }
-    .menu a:hover { color: #fff; }
     .nav-cta {
       font-size: 13.5px; font-weight: 600;
       border: 1px solid rgba(255,255,255,0.28);
@@ -191,6 +189,69 @@
     .card h3 { margin: 2px 0 0; font-size: 16px; letter-spacing: -0.01em; font-weight: 800; }
     .card p { margin: 0; font-size: 13px; color: var(--muted); }
 
+    .card { cursor: pointer; text-align: left; font: inherit; color: inherit; width: 100%; }
+    .card:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .card .more { margin-top: auto; padding-top: 6px; font-size: 13px; font-weight: 700; color: var(--accent); }
+
+    /* 상세 설명 창 */
+    .modal { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; padding: 20px; }
+    .modal[hidden] { display: none; }
+    .modal-backdrop { position: absolute; inset: 0; background: rgba(6, 10, 24, 0.72); backdrop-filter: blur(4px); }
+    .modal-box {
+      position: relative; z-index: 1;
+      width: min(960px, 100%); max-height: calc(100vh - 40px);
+      display: grid; grid-template-columns: 300px 1fr;
+      border-radius: 22px; overflow: auto;
+      box-shadow: 0 40px 90px rgba(0,0,0,0.5);
+      animation: pop .18s ease-out;
+    }
+    @keyframes pop { from { transform: translateY(10px) scale(.98); opacity: 0; } to { transform: none; opacity: 1; } }
+    .modal-side {
+      color: #fff; padding: 34px 30px;
+      background:
+        radial-gradient(500px 300px at 90% -10%, rgba(58,209,255,0.22), transparent 60%),
+        linear-gradient(160deg, var(--navy-900), var(--navy-700));
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .modal-ic {
+      width: 48px; height: 48px; border-radius: 13px;
+      background: linear-gradient(135deg, var(--cyan-400), var(--blue-500));
+      display: grid; place-items: center; font-weight: 900; font-size: 15px; color: #fff;
+      box-shadow: 0 8px 20px rgba(47,107,255,0.4);
+    }
+    .modal-side h2 { margin: 6px 0 0; font-size: 24px; line-height: 1.3; letter-spacing: -0.02em; font-weight: 800; }
+    .modal-side p { margin: 0; font-size: 14.5px; color: rgba(255,255,255,0.78); }
+    .modal-cta { margin-top: auto; align-self: flex-start; font-size: 14px; padding: 10px 16px; }
+    .modal-main { background: var(--surface); padding: 30px 32px; }
+    .modal-steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; counter-reset: step; }
+    .modal-steps li {
+      display: grid; grid-template-columns: 34px 1fr; column-gap: 14px; row-gap: 0; align-items: start;
+      padding: 12px 16px; border: 1px solid var(--line); border-radius: 14px;
+      background: var(--bg);
+    }
+    .modal-steps li::before {
+      grid-row: 1 / span 2;
+      counter-increment: step; content: counter(step);
+      width: 34px; height: 34px; border-radius: 50%;
+      background: var(--accent-soft); color: var(--accent);
+      display: grid; place-items: center; font-weight: 800; font-size: 14px;
+    }
+    .modal-steps b { display: block; font-size: 15.5px; margin-bottom: 3px; letter-spacing: -0.01em; }
+    .modal-steps span { grid-column: 2; font-size: 13.5px; color: var(--muted); line-height: 1.55; }
+    .modal-close {
+      position: absolute; top: 14px; right: 14px; z-index: 2;
+      width: 36px; height: 36px; border-radius: 50%; border: 0; cursor: pointer;
+      background: rgba(18,26,46,0.08); color: var(--text); font-size: 22px; line-height: 1;
+    }
+    .modal-close:hover { background: rgba(18,26,46,0.16); }
+    body.modal-open { overflow: hidden; }
+    @media (max-width: 760px) {
+      .modal-box { grid-template-columns: 1fr; }
+      .modal-side { padding: 26px 22px; }
+      .modal-main { padding: 20px 18px; }
+      .modal-close { background: rgba(255,255,255,0.18); color: #fff; }
+    }
+
     footer {
       border-top: 1px solid var(--line);
       padding: 8px 0 8px;
@@ -202,7 +263,6 @@
     /* ───────── 반응형 ───────── */
     @media (max-width: 1024px) {
       .hero { grid-template-columns: 1fr; gap: 28px; padding: 28px 0 36px; }
-      .menu { display: none; }
       .brand-sub { display: none; }
       .grid { grid-template-columns: repeat(2, 1fr); }
       .page { min-height: auto; }
@@ -222,12 +282,6 @@
     <div class="wrap">
       <nav>
         <a class="brand" href="#"><span class="mark">X</span>리스팅플로우 X<span class="brand-sub"> - IPO · IR · PR · 공시 통합 운영시스템</span></a>
-        <div class="menu">
-          <a href="#ipo">IPO</a>
-          <a href="#ir">IR</a>
-          <a href="#pr">PR</a>
-          <a href="#disclosure">공시</a>
-        </div>
         <a class="nav-cta" href="/contact">도입 문의</a>
       </nav>
 
@@ -276,29 +330,96 @@
         <h2>네 가지 업무를 한 시스템에서</h2>
       </div>
       <div class="grid">
-        <article class="card" id="ipo">
+        <button class="card" type="button" id="ipo" data-detail="ipo">
           <div class="ic">IPO</div>
           <h3>상장 전 과정 안내</h3>
           <p>준비, 신청 서류, 심사, 증권신고서, 공모, 상장 후 관리까지 단계별 실무를 안내합니다.</p>
-        </article>
-        <article class="card" id="ir">
+          <span class="more">자세히 보기 →</span>
+        </button>
+        <button class="card" type="button" id="ir" data-detail="ir">
           <div class="ic">IR</div>
           <h3>IR 자료와 배포</h3>
           <p>회사 자료를 올리면 IR 자료와 IR Deck 초안을 만들고, 투자자 명단으로 배포합니다.</p>
-        </article>
-        <article class="card" id="pr">
+          <span class="more">자세히 보기 →</span>
+        </button>
+        <button class="card" type="button" id="pr" data-detail="pr">
           <div class="ic">PR</div>
           <h3>보도자료와 기획기사</h3>
           <p>문의 내용으로 초안을 만들고 담당자 검토를 거쳐 기자에게 보냅니다. 사실관계는 공시와 맞춥니다.</p>
-        </article>
-        <article class="card" id="disclosure">
+          <span class="more">자세히 보기 →</span>
+        </button>
+        <button class="card" type="button" id="disclosure" data-detail="disclosure">
           <div class="ic">공시</div>
           <h3>공시 제도와 상담</h3>
           <p>시장별 공시 규정 원문을 정리하고, 자주 묻는 20가지 유형과 서술형 문의에 답합니다.</p>
-        </article>
+          <span class="more">자세히 보기 →</span>
+        </button>
       </div>
     </div>
   </section>
+
+  <!-- ───────── 상세 설명 창 ───────── -->
+  <div class="modal" id="modal" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" type="button" aria-label="닫기" data-close>×</button>
+      <div class="modal-side">
+        <div class="modal-ic" id="modalIc"></div>
+        <h2 id="modalTitle"></h2>
+        <p id="modalLead"></p>
+        <a class="btn primary modal-cta" href="/contact">문의하기 →</a>
+      </div>
+      <div class="modal-main">
+        <ol class="modal-steps" id="modalSteps"></ol>
+      </div>
+    </div>
+  </div>
+
+  <template id="detail-ipo">
+    <h2>코넥스에서 코스닥까지, 상장의 전 과정</h2>
+    <p>예심 준비부터 상장 후 관리까지, 각 단계에서 무엇을 언제 준비해야 하는지 규정 원문과 서식을 기준으로 안내합니다.</p>
+    <ol>
+      <li><b>준비</b><span>요건 · 일정 · 체크리스트를 신청일에서 거꾸로 세어 정리하고, 지정감사와 회계감리를 미리 챙깁니다.</span></li>
+      <li><b>실사 · 기술평가</b><span>대표주관계약, 본실사, 기술평가를 거치며 지적사항을 해소하고 예심 신청을 막는 요인을 없앱니다.</span></li>
+      <li><b>예심 신청서</b><span>공양식 Ⅰ~Ⅸ장에 무엇이 들어가는지 안내하고, 샘플 보기 · 채우기 · 검증으로 신청서를 완성합니다.</span></li>
+      <li><b>심사 대응</b><span>심사관 질의, 질적심사, 업종별 기준에 맞춰 답변 자료를 준비합니다.</span></li>
+      <li><b>증권신고서 · 공모</b><span>투자위험요소, 자금 사용계획, 공모가 산정, 의무보유와 유통가능물량을 정리합니다.</span></li>
+      <li><b>상장 후 관리</b><span>상장일 첫 가격, 관리종목 · 실질심사 기준, 상장 뒤 공시 의무를 안내합니다.</span></li>
+    </ol>
+  </template>
+
+  <template id="detail-ir">
+    <h2>자료를 올리면 IR 자료가 만들어집니다</h2>
+    <p>회사 자료를 기반으로 IR 자료와 IR Deck 초안을 만들고, 디자인을 다듬어 투자자에게 바로 전달합니다.</p>
+    <ol>
+      <li><b>IR 상담</b><span>회사 자료와 공시를 바탕으로 투자자가 물을 만한 질문과 답변을 미리 정리합니다.</span></li>
+      <li><b>IR Deck 자동 생성</b><span>사업 현황 · 재무 · 투자 포인트를 담은 Deck 초안을 만들고, 원하는 디자인으로 바꿉니다.</span></li>
+      <li><b>자료 배포</b><span>만든 자료를 투자자 · 기관 명단으로 보내고 발송 이력을 관리합니다.</span></li>
+      <li><b>상장 전 IR 활동</b><span>공모 일정에 맞춘 IR 활동과 공정공시 규정을 함께 확인합니다.</span></li>
+    </ol>
+  </template>
+
+  <template id="detail-pr">
+    <h2>보도자료와 기획기사, 검토를 거쳐 기자에게</h2>
+    <p>문의 내용으로 초안을 만들고 담당자가 사실관계를 확인한 뒤 배포합니다. 보도 내용은 공시와 어긋나지 않게 맞춥니다.</p>
+    <ol>
+      <li><b>문의 등록</b><span>보도자료인지 기획기사인지 고르고, 알리고 싶은 내용과 참고 자료를 남깁니다.</span></li>
+      <li><b>초안 생성 · 검토</b><span>초안을 만들고, 담당자가 수치와 표현을 공시 내용과 대조해 검토합니다.</span></li>
+      <li><b>기사 배포</b><span>검토를 마친 기사를 기자 명단으로 보내고 배포 결과를 기록합니다.</span></li>
+      <li><b>공시와의 정합성</b><span>보도자료의 사실관계가 공시와 맞는지 확인해 정정 위험을 줄입니다.</span></li>
+    </ol>
+  </template>
+
+  <template id="detail-disclosure">
+    <h2>시장별 공시 제도, 규정 원문 그대로</h2>
+    <p>코넥스 · 코스닥 · 유가증권시장의 공시 규정을 원문 기준으로 정리하고, 자주 묻는 유형부터 서술형 문의까지 답합니다.</p>
+    <ol>
+      <li><b>제도 확인</b><span>코넥스 공시제도, 코스닥 기업공시제도, 공정공시, 내부자 보고 의무, 불공정거래 규제를 정리합니다.</span></li>
+      <li><b>자주 묻는 20가지 유형</b><span>유형을 고르면 답변을 보고, 필요한 서식을 바로 작성합니다.</span></li>
+      <li><b>서술형 문의</b><span>유형에 없는 내용은 질문을 적으면 규정과 사례를 찾아 답합니다.</span></li>
+      <li><b>이전상장 공시 사슬</b><span>이전상장 과정에서 무엇을 언제 공시해야 하는지 순서대로 안내합니다.</span></li>
+    </ol>
+  </template>
 
   <footer>
     <div class="wrap">
@@ -307,5 +428,47 @@
   </footer>
 
 </div>
+<script>
+  (function () {
+    "use strict";
+    var modal = document.getElementById("modal");
+    var ic = document.getElementById("modalIc");
+    var title = document.getElementById("modalTitle");
+    var lead = document.getElementById("modalLead");
+    var steps = document.getElementById("modalSteps");
+    var lastFocus = null;
+
+    function open(key, label) {
+      var tpl = document.getElementById("detail-" + key);
+      if (!tpl) return;
+      var c = tpl.content;
+      ic.textContent = label;
+      title.textContent = c.querySelector("h2").textContent;
+      lead.textContent = c.querySelector("p").textContent;
+      steps.innerHTML = c.querySelector("ol").innerHTML;
+      lastFocus = document.activeElement;
+      modal.hidden = false;
+      document.body.classList.add("modal-open");
+      modal.querySelector(".modal-close").focus();
+    }
+    function close() {
+      modal.hidden = true;
+      document.body.classList.remove("modal-open");
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+
+    document.querySelectorAll(".card[data-detail]").forEach(function (card) {
+      card.addEventListener("click", function () {
+        open(card.dataset.detail, card.querySelector(".ic").textContent);
+      });
+    });
+    modal.querySelectorAll("[data-close]").forEach(function (el) {
+      el.addEventListener("click", close);
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && !modal.hidden) close();
+    });
+  })();
+</script>
 </body>
 </html>
