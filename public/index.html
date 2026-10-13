@@ -188,28 +188,59 @@
       background: rgba(255,255,255,0.06);
       border: 1px solid rgba(255,255,255,0.14);
       border-radius: 20px;
-      padding: 22px 22px 20px;
+      padding: 16px 18px 16px;
       display: flex; flex-direction: column;
       backdrop-filter: blur(6px);
       box-shadow: 0 30px 60px rgba(0,0,0,0.35);
     }
     .panel .ph {
       display: flex; justify-content: space-between; align-items: center;
-      font-size: 14px; color: rgba(255,255,255,0.65); margin-bottom: 16px;
+      font-size: 14px; color: rgba(255,255,255,0.65); margin-bottom: 12px;
     }
     .panel .ph b { color: #fff; font-size: 16px; }
     .flow { flex: 1; display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: stretch; gap: 10px; }
     .node {
       background: rgba(255,255,255,0.08);
       border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 14px; padding: 18px 16px 16px;
+      border-radius: 14px; padding: 12px 14px 10px;
       min-width: 0;
       display: flex; flex-direction: column; justify-content: center;
     }
     .node .k { font-size: 12.5px; font-weight: 700; color: var(--cyan-400); letter-spacing: 0.06em; }
-    .node .t { font-size: 17px; font-weight: 800; margin: 4px 0 12px; white-space: nowrap; letter-spacing: -0.01em; }
-    .node ul { margin: 0; padding: 0; list-style: none; font-size: 13.5px; color: rgba(255,255,255,0.78); display: flex; flex-direction: column; gap: 7px; line-height: 1.4; }
+    .node .t { font-size: 17px; font-weight: 800; margin: 3px 0 9px; white-space: nowrap; letter-spacing: -0.01em; }
+    .node ul { margin: 0; padding: 0; list-style: none; font-size: 13.5px; color: rgba(255,255,255,0.78); display: flex; flex-direction: column; gap: 5px; line-height: 1.4; }
     .arrow { align-self: center; color: rgba(255,255,255,0.45); font-size: 22px; }
+
+    /* 코스닥 이전상장 순서 */
+    .order {
+      margin-top: 10px; padding-top: 10px;
+      border-top: 1px solid rgba(255,255,255,0.12);
+    }
+    .order-title {
+      font-size: 12px; font-weight: 700; letter-spacing: 0.04em;
+      color: rgba(255,255,255,0.6); margin-bottom: 6px;
+    }
+    .order-steps {
+      list-style: none; margin: 0; padding: 0;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px;
+      counter-reset: ord;
+    }
+    .order-steps li {
+      display: flex; align-items: center; gap: 7px;
+      font-size: 12.5px; font-weight: 600; color: #fff; white-space: nowrap;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px; padding: 5px 8px;
+      min-width: 0;
+    }
+    .order-steps li::before {
+      counter-increment: ord; content: counter(ord);
+      flex: 0 0 18px; width: 18px; height: 18px; border-radius: 50%;
+      background: var(--cyan-400); color: var(--navy-900);
+      font-size: 11px; font-weight: 800;
+      display: grid; place-items: center;
+    }
+    @media (max-width: 600px) { .order-steps { grid-template-columns: repeat(2, 1fr); } }
 
     /* ───────── 하단 영역: 네 기둥 ───────── */
     .pillars { padding: 14px 0 10px; }
@@ -359,7 +390,7 @@
         </div>
 
         <aside class="panel" aria-label="상장 로드맵 요약">
-          <div class="ph"><b>상장 로드맵</b><span>코넥스 → 코스닥 → 유가증권</span></div>
+          <div class="ph"><b>상장 로드맵</b></div>
           <div class="flow">
             <div class="node">
               <div class="k">1편</div>
@@ -378,6 +409,19 @@
               <div class="t">유가증권시장</div>
               <ul><li>형식요건 · 질적심사</li><li>상장 기준 · 체크리스트</li><li>상법 · 세무 · 주총</li></ul>
             </div>
+          </div>
+          <div class="order">
+            <div class="order-title">코스닥 이전상장 순서</div>
+            <ol class="order-steps">
+              <li>지정감사</li>
+              <li>주관사 선정</li>
+              <li>실사 · 기술평가</li>
+              <li>예심 신청</li>
+              <li>상장 심사</li>
+              <li>증권신고서</li>
+              <li>공모</li>
+              <li>상장</li>
+            </ol>
           </div>
         </aside>
       </div>
