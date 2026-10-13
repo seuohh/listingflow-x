@@ -18,7 +18,6 @@ GitHub `main` 브랜치에 푸시하면 Cloudflare Workers Builds 가 자동으�
 
 - Cloudflare 프로젝트: Workers & Pages > listingflow-x
 - 대표 주소: https://listingflowx.com
-- 개발용 주소: https://listingflow-x.seuohh.workers.dev
 
 ## 도메인
 
@@ -28,6 +27,7 @@ GitHub `main` 브랜치에 푸시하면 Cloudflare Workers Builds 가 자동으�
 | www.listingflowx.com | listingflowx.com 으로 301 리다이렉트 |
 | listingflow-x.com | listingflowx.com 으로 301 리다이렉트 |
 | www.listingflow-x.com | listingflowx.com 으로 301 리다이렉트 |
+| listingflow-x.seuohh.workers.dev | listingflowx.com 으로 301 리다이렉트 |
 
 도메인 목록은 `wrangler.jsonc` 의 `routes`, 리다이렉트 규칙은 `src/index.js` 에 있습니다.
 
