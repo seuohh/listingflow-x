@@ -97,8 +97,8 @@
       display: grid;
       grid-template-columns: 1.05fr 0.95fr;
       gap: 40px;
-      align-items: stretch;
-      padding: 14px 0 18px;
+      align-items: center;
+      padding: 8px 0 12px;
     }
     .hero-left { display: flex; flex-direction: column; justify-content: center; }
     .hero h1 {
@@ -188,7 +188,7 @@
       background: rgba(255,255,255,0.06);
       border: 1px solid rgba(255,255,255,0.14);
       border-radius: 20px;
-      padding: 16px 18px 16px;
+      padding: 14px 16px 14px;
       display: flex; flex-direction: column;
       backdrop-filter: blur(6px);
       box-shadow: 0 30px 60px rgba(0,0,0,0.35);
@@ -198,23 +198,21 @@
       font-size: 14px; color: rgba(255,255,255,0.65); margin-bottom: 12px;
     }
     .panel .ph b { color: #fff; font-size: 16px; }
-    .flow { flex: 1 1 0; min-height: 0; display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: stretch; gap: 10px; }
+    .flow { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: stretch; gap: 10px; }
     .node {
       background: rgba(255,255,255,0.08);
       border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 14px; padding: 12px 14px 10px;
+      border-radius: 14px; padding: 11px 13px 10px;
       min-width: 0;
       display: flex; flex-direction: column; justify-content: center;
     }
     .node .k { font-size: 12.5px; font-weight: 700; color: var(--cyan-400); letter-spacing: 0.06em; }
-    .node .t { font-size: 17px; font-weight: 800; margin: 3px 0 9px; white-space: nowrap; letter-spacing: -0.01em; }
-    .node ul { margin: 0; padding: 0; list-style: none; font-size: 13.5px; color: rgba(255,255,255,0.78); display: flex; flex-direction: column; gap: 5px; line-height: 1.4; }
+    .node .t { font-size: 16px; font-weight: 800; margin: 2px 0 7px; white-space: nowrap; letter-spacing: -0.01em; }
+    .node ul { margin: 0; padding: 0; list-style: none; font-size: 13px; color: rgba(255,255,255,0.78); display: flex; flex-direction: column; gap: 4px; line-height: 1.35; }
     .arrow { align-self: center; color: rgba(255,255,255,0.45); font-size: 22px; }
 
     /* 코스닥 이전상장 순서 */
     .order {
-      flex: 1 1 0; min-height: 0;
-      display: flex; flex-direction: column;
       margin-top: 12px; padding-top: 12px;
       border-top: 1px solid rgba(255,255,255,0.12);
     }
@@ -224,28 +222,32 @@
     }
     .order-steps {
       list-style: none; margin: 0; padding: 0;
-      flex: 1; display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 1fr; gap: 8px;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
       counter-reset: ord;
     }
     .order-steps li {
-      display: flex; align-items: center; gap: 7px;
-      font-size: 13.5px; font-weight: 600; color: #fff; white-space: nowrap;
+      display: grid; grid-template-columns: 20px 1fr; column-gap: 9px; row-gap: 2px;
+      align-items: center; align-content: center;
+      color: #fff;
       background: rgba(255,255,255,0.08);
       border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 12px; padding: 8px 10px;
+      border-radius: 12px; padding: 7px 10px;
       min-width: 0;
     }
     .order-steps li::before {
       counter-increment: ord; content: counter(ord);
-      flex: 0 0 20px; width: 20px; height: 20px; border-radius: 50%;
+      grid-row: 1 / span 2;
+      width: 20px; height: 20px; border-radius: 50%;
       background: var(--cyan-400); color: var(--navy-900);
       font-size: 11.5px; font-weight: 800;
       display: grid; place-items: center;
     }
+    .order-steps b { font-size: 13.5px; font-weight: 700; line-height: 1.25; white-space: nowrap; }
+    .order-steps span { font-size: 11px; color: rgba(255,255,255,0.68); line-height: 1.3; }
     @media (max-width: 600px) { .order-steps { grid-template-columns: repeat(2, 1fr); } }
 
     /* ───────── 하단 영역: 네 기둥 ───────── */
-    .pillars { padding: 14px 0 10px; }
+    .pillars { padding: 10px 0 8px; }
     .pillars .head {
       display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
       margin-bottom: 10px; flex-wrap: wrap;
@@ -256,8 +258,8 @@
       background: var(--surface);
       border: 1px solid var(--line);
       border-radius: var(--radius);
-      padding: 14px 16px 13px;
-      display: flex; flex-direction: column; gap: 6px;
+      padding: 12px 14px 11px;
+      display: flex; flex-direction: column; gap: 5px;
       transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
     }
     .card:hover { transform: translateY(-2px); border-color: var(--accent); box-shadow: 0 12px 28px rgba(18, 26, 46, 0.08); }
@@ -335,7 +337,7 @@
 
     footer {
       border-top: 1px solid var(--line);
-      padding: 8px 0 8px;
+      padding: 6px 0 6px;
       font-size: 12px; color: var(--muted);
       display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
     }
@@ -415,14 +417,14 @@
           <div class="order">
             <div class="order-title">코스닥 이전상장 순서</div>
             <ol class="order-steps">
-              <li>지정감사</li>
-              <li>실사 · 기술평가</li>
-              <li>예심 신청</li>
-              <li>상장 심사</li>
-              <li>증권신고서</li>
-              <li>공모</li>
-              <li>청약</li>
-              <li>상장</li>
+              <li><b>지정감사</b><span>지정 감사인의 회계감사</span></li>
+              <li><b>실사 · 기술평가</b><span>주관사 실사와 기술성 평가</span></li>
+              <li><b>예심 신청</b><span>상장예비심사 신청서 제출</span></li>
+              <li><b>상장 심사</b><span>거래소의 형식 · 질적 심사</span></li>
+              <li><b>증권신고서</b><span>공모 조건과 투자위험 기재</span></li>
+              <li><b>공모</b><span>수요예측과 공모가 확정</span></li>
+              <li><b>청약</b><span>기관 · 일반 투자자 청약</span></li>
+              <li><b>상장</b><span>신규상장 신청 후 거래 개시</span></li>
             </ol>
           </div>
         </aside>
