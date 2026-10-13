@@ -7,8 +7,9 @@ Cloudflare Workers(정적 자산) 로 배포되는 정적 사이트입니다.
 | 경로 | 용도 | 상태 |
 |---|---|---|
 | `public/index.html` | 메인 페이지 (배포되는 파일) | 비어 있음 |
+| `src/index.js` | 도메인 리다이렉트 처리 Worker 코드 | 완료 |
 | `listingflow-x.txt` | 기획 / 메모 (배포되지 않음) | 비어 있음 |
-| `wrangler.jsonc` | Cloudflare Workers 배포 설정 | 완료 |
+| `wrangler.jsonc` | Cloudflare Workers 배포 설정 (도메인 포함) | 완료 |
 
 ## 배포
 
@@ -16,7 +17,19 @@ GitHub `main` 브랜치에 푸시하면 Cloudflare Workers Builds 가 자동으�
 `npx wrangler deploy` 를 실행해 `public/` 폴더를 배포합니다.
 
 - Cloudflare 프로젝트: Workers & Pages > listingflow-x
-- 배포 주소: https://listingflow-x.seuohh.workers.dev
+- 대표 주소: https://listingflowx.com
+- 개발용 주소: https://listingflow-x.seuohh.workers.dev
+
+## 도메인
+
+| 도메인 | 동작 |
+|---|---|
+| listingflowx.com | 대표 주소, 사이트 서빙 |
+| www.listingflowx.com | listingflowx.com 으로 301 리다이렉트 |
+| listingflow-x.com | listingflowx.com 으로 301 리다이렉트 |
+| www.listingflow-x.com | listingflowx.com 으로 301 리다이렉트 |
+
+도메인 목록은 `wrangler.jsonc` 의 `routes`, 리다이렉트 규칙은 `src/index.js` 에 있습니다.
 
 ## 추후 작업
 
