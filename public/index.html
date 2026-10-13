@@ -4,314 +4,356 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>리스팅플로우 X</title>
-  <meta name="description" content="IPO·IR·PR·공시 통합 운영시스템. 코넥스 상장, 코스닥 이전상장, 유가증권시장 상장의 전 과정과 계산 시뮬레이션.">
+  <meta name="description" content="리스팅플로우 X는 IPO·IR·PR·공시를 하나의 흐름으로 운영하는 통합 운영시스템입니다. 코넥스 상장, 코스닥 이전상장, 유가증권시장 상장의 전 과정을 규정 원문과 함께 안내합니다.">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
   <style>
     :root {
-      --bg: #f4f6f9;
+      --navy-900: #0b1430;
+      --navy-800: #101d45;
+      --navy-700: #182a5e;
+      --blue-500: #2f6bff;
+      --blue-400: #5b8cff;
+      --cyan-400: #3ad1ff;
+      --bg: #f5f7fb;
       --surface: #ffffff;
-      --text: #1a1f29;
-      --muted: #6b7280;
-      --line: #e2e6ec;
-      --accent: #1d4ed8;
-      --accent-soft: #e7eefc;
-      --radius: 14px;
+      --text: #121a2e;
+      --muted: #5f6b85;
+      --line: #e1e6f0;
+      --accent: #2f6bff;
+      --accent-soft: #e9f0ff;
+      --radius: 16px;
     }
     @media (prefers-color-scheme: dark) {
       :root {
-        --bg: #0e1117;
-        --surface: #171b24;
-        --text: #eceff4;
-        --muted: #98a2b3;
-        --line: #283040;
-        --accent: #7a9cff;
-        --accent-soft: #1b2540;
+        --bg: #0a1022;
+        --surface: #121a30;
+        --text: #eaeef8;
+        --muted: #97a3c0;
+        --line: #243052;
+        --accent: #6f98ff;
+        --accent-soft: #1a2750;
       }
     }
+
     * { box-sizing: border-box; }
     html, body { margin: 0; padding: 0; }
     body {
-      background: var(--bg);
+      font-family: "Pretendard", "Pretendard Variable", "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", system-ui, sans-serif;
       color: var(--text);
-      font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", system-ui, sans-serif;
-      line-height: 1.5;
+      background: var(--bg);
+      line-height: 1.55;
       -webkit-font-smoothing: antialiased;
+      word-break: keep-all;
     }
-    main {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 28px 20px 32px;
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 28px; }
+    .page { min-height: 100vh; display: flex; flex-direction: column; }
+
+    /* ───────── 상단 영역 (네비 + 히어로) ───────── */
+    .top {
+      color: #fff;
+      background:
+        radial-gradient(900px 500px at 85% -10%, rgba(58, 209, 255, 0.22), transparent 60%),
+        radial-gradient(700px 400px at 10% 110%, rgba(47, 107, 255, 0.28), transparent 60%),
+        linear-gradient(160deg, var(--navy-900) 0%, var(--navy-800) 60%, var(--navy-700) 100%);
+      flex: 1 1 auto;
       display: flex;
       flex-direction: column;
-      gap: 18px;
-      min-height: 100vh;
     }
-
-    /* 헤더 */
-    .hero {
+    nav {
       display: flex;
-      align-items: flex-end;
+      align-items: center;
       justify-content: space-between;
-      gap: 24px;
-      flex-wrap: wrap;
+      height: 58px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 18px;
+      letter-spacing: -0.01em;
+    }
+    .brand .mark {
+      width: 30px; height: 30px; border-radius: 9px;
+      background: linear-gradient(135deg, var(--cyan-400), var(--blue-500));
+      display: grid; place-items: center;
+      font-size: 15px; font-weight: 900; color: #fff;
+      box-shadow: 0 6px 16px rgba(47, 107, 255, 0.35);
+    }
+    .menu { display: flex; gap: 28px; font-size: 14.5px; font-weight: 500; color: rgba(255,255,255,0.78); }
+    .menu a:hover { color: #fff; }
+    .nav-cta {
+      font-size: 13.5px; font-weight: 600;
+      border: 1px solid rgba(255,255,255,0.28);
+      border-radius: 999px; padding: 8px 16px;
+      color: #fff;
+    }
+    .nav-cta:hover { background: rgba(255,255,255,0.1); }
+
+    .hero {
+      flex: 1 1 auto;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 48px;
+      align-items: center;
+      padding: 10px 0 16px;
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 600; letter-spacing: 0.02em;
+      color: #cfe4ff;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 999px; padding: 6px 12px 6px 8px;
+      margin-bottom: 10px;
+    }
+    .eyebrow i {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--cyan-400);
+      box-shadow: 0 0 0 4px rgba(58,209,255,0.18);
     }
     .hero h1 {
-      font-size: clamp(24px, 3vw, 32px);
-      line-height: 1.25;
-      margin: 0 0 6px;
-      letter-spacing: -0.02em;
+      font-size: clamp(30px, 3.6vw, 46px);
+      line-height: 1.18;
+      letter-spacing: -0.03em;
+      margin: 0 0 12px;
+      font-weight: 800;
     }
-    .hero h1 .sub {
-      font-weight: 600;
-      color: var(--muted);
-      font-size: 0.62em;
-      margin-left: 10px;
-      white-space: nowrap;
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(90deg, #9cc8ff, var(--cyan-400));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
     }
-    .hero p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 14.5px;
-      max-width: 720px;
+    .hero .lead {
+      font-size: 15.5px;
+      color: rgba(255,255,255,0.78);
+      margin: 0 0 20px;
+      max-width: 560px;
     }
-    .stats {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
+    .cta { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 18px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 15px; font-weight: 700;
+      border-radius: 11px; padding: 11px 18px;
+      transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
     }
-    .stat {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 6px 12px;
-      font-size: 12.5px;
-      color: var(--muted);
-      white-space: nowrap;
+    .btn.primary {
+      background: #fff; color: var(--navy-900);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.25);
     }
-    .stat b { color: var(--text); font-weight: 700; margin-right: 2px; }
+    .btn.primary:hover { transform: translateY(-1px); }
+    .btn.ghost {
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+    .btn.ghost:hover { background: rgba(255,255,255,0.08); }
 
-    /* 공통 카드 */
+    .stats { display: flex; gap: 34px; flex-wrap: wrap; }
+    .stat b { display: block; font-size: 22px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; }
+    .stat span { font-size: 13px; color: rgba(255,255,255,0.62); }
+
+    /* 히어로 우측: 상장 흐름 패널 */
+    .panel {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 20px;
+      padding: 18px 18px 14px;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.35);
+    }
+    .panel .ph {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 12px;
+    }
+    .panel .ph b { color: #fff; font-size: 14px; }
+    .flow { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: stretch; gap: 8px; }
+    .node {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px; padding: 12px 12px 10px;
+      min-width: 0;
+    }
+    .node .k { font-size: 11.5px; font-weight: 700; color: var(--cyan-400); letter-spacing: 0.06em; }
+    .node .t { font-size: 15px; font-weight: 800; margin: 3px 0 8px; letter-spacing: -0.01em; }
+    .node ul { margin: 0; padding: 0; list-style: none; font-size: 12.5px; color: rgba(255,255,255,0.72); display: flex; flex-direction: column; gap: 3px; }
+    .arrow { align-self: center; color: rgba(255,255,255,0.4); font-size: 18px; }
+    .panel .pf {
+      margin-top: 12px; padding-top: 10px;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      display: flex; gap: 8px; flex-wrap: wrap;
+      font-size: 12px; color: rgba(255,255,255,0.75);
+    }
+    .panel .pf span {
+      background: rgba(255,255,255,0.08); border-radius: 999px; padding: 4px 10px;
+    }
+    .panel .pf .lbl { background: none; padding-left: 0; color: rgba(255,255,255,0.55); font-weight: 600; }
+
+    /* ───────── 하단 영역: 네 기둥 ───────── */
+    .pillars { padding: 14px 0 10px; }
+    .pillars .head {
+      display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
+      margin-bottom: 10px; flex-wrap: wrap;
+    }
+    .pillars h2 { font-size: 18px; margin: 0; letter-spacing: -0.02em; font-weight: 800; }
+    .pillars .head p { margin: 0; font-size: 14px; color: var(--muted); }
+    .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
     .card {
       background: var(--surface);
       border: 1px solid var(--line);
       border-radius: var(--radius);
-      padding: 18px 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
+      padding: 14px 16px 13px;
+      display: flex; flex-direction: column; gap: 6px;
+      transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
     }
-    .label {
-      font-size: 11.5px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-      margin: 0;
+    .card:hover { transform: translateY(-2px); border-color: var(--accent); box-shadow: 0 12px 28px rgba(18, 26, 46, 0.08); }
+    .card .ic {
+      width: 32px; height: 32px; border-radius: 9px;
+      background: var(--accent-soft); color: var(--accent);
+      display: grid; place-items: center; font-weight: 800; font-size: 13px;
+      letter-spacing: 0.02em;
     }
-
-    /* 상장 시리즈 */
-    .series {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
-    .series .card { gap: 8px; }
-    .series .num {
-      display: inline-block;
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--accent);
-      background: var(--accent-soft);
-      border-radius: 6px;
-      padding: 2px 8px;
-      align-self: flex-start;
-    }
-    .series h2 {
-      font-size: 19px;
-      margin: 0;
-      line-height: 1.3;
-      letter-spacing: -0.01em;
-    }
-    .series .tag {
-      font-size: 13px;
-      color: var(--muted);
-      margin: -4px 0 2px;
-    }
-    .steps {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-      font-size: 13.5px;
-    }
-    .steps li {
-      display: flex;
-      gap: 8px;
-      align-items: baseline;
-    }
-    .steps .n {
-      flex: 0 0 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: var(--accent-soft);
-      color: var(--accent);
-      font-size: 11px;
-      font-weight: 700;
-      display: grid;
-      place-items: center;
-      line-height: 1;
-      transform: translateY(2px);
-    }
-    .steps b { font-weight: 600; }
-    .steps span.d { color: var(--muted); }
-
-    /* 하단: 시뮬레이션 + 모듈 */
-    .bottom {
-      display: grid;
-      grid-template-columns: 1.15fr 2fr;
-      gap: 14px;
-    }
-    .sim h2, .modules h2 {
-      font-size: 17px;
-      margin: 0;
-      letter-spacing: -0.01em;
-    }
-    .sim .intro { font-size: 13px; color: var(--muted); margin: -4px 0 0; }
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 2px;
-    }
-    .chip {
-      font-size: 13px;
-      font-weight: 600;
-      border: 1px solid var(--line);
-      background: var(--bg);
-      border-radius: 999px;
-      padding: 5px 11px;
-    }
-    .modules .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-    }
-    .module {
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      padding: 10px 12px;
-      font-size: 12.5px;
-      color: var(--muted);
-      line-height: 1.45;
-    }
-    .module b {
-      display: block;
-      font-size: 14px;
-      color: var(--text);
-      margin-bottom: 3px;
+    .card h3 { margin: 2px 0 0; font-size: 16px; letter-spacing: -0.01em; font-weight: 800; }
+    .card p { margin: 0; font-size: 13px; color: var(--muted); }
+    .card .tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
+    .card .tags span {
+      font-size: 11.5px; font-weight: 600; color: var(--muted);
+      border: 1px solid var(--line); border-radius: 6px; padding: 2px 7px;
     }
 
     footer {
-      margin-top: auto;
-      font-size: 12px;
-      color: var(--muted);
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
+      border-top: 1px solid var(--line);
+      padding: 8px 0 8px;
+      font-size: 12px; color: var(--muted);
+      display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
     }
+    footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; width: 100%; }
 
-    @media (max-width: 980px) {
-      .series { grid-template-columns: 1fr; }
-      .bottom { grid-template-columns: 1fr; }
-      .modules .grid { grid-template-columns: repeat(3, 1fr); }
-      main { min-height: auto; }
+    /* ───────── 반응형 ───────── */
+    @media (max-width: 1024px) {
+      .hero { grid-template-columns: 1fr; gap: 28px; padding: 28px 0 36px; }
+      .menu { display: none; }
+      .grid { grid-template-columns: repeat(2, 1fr); }
+      .page { min-height: auto; }
     }
-    @media (max-width: 480px) {
-      .modules .grid { grid-template-columns: 1fr; }
-      .hero h1 .sub { display: block; margin: 4px 0 0; white-space: normal; }
+    @media (max-width: 600px) {
+      .wrap { padding: 0 18px; }
+      .flow { grid-template-columns: 1fr; }
+      .arrow { transform: rotate(90deg); justify-self: center; }
+      .grid { grid-template-columns: 1fr; }
+      .stats { gap: 22px; }
     }
   </style>
 </head>
 <body>
-  <main>
-    <header class="hero">
-      <div>
-        <h1>리스팅플로우 X <span class="sub">IPO · IR · PR · 공시 통합 운영시스템</span></h1>
-        <p>상장·공시·증권신고서·실사·IR을 물어보면 규정 원문·법령·DART 공시·통계·뉴스를 찾아 출처와 함께 답합니다.</p>
-      </div>
-      <div class="stats">
-        <span class="stat"><b>52</b>개 화면</span>
-        <span class="stat"><b>398</b>개 항목</span>
-      </div>
-    </header>
+<div class="page">
 
-    <section class="series" aria-label="상장 시리즈">
-      <article class="card">
-        <span class="num">1편</span>
-        <h2>코넥스 상장</h2>
-        <p class="tag">중소·벤처기업의 첫 상장</p>
-        <ol class="steps">
-          <li><span class="n">1</span><div><b>준비</b> <span class="d">요건 · 일정 · 체크리스트 · 서류</span></div></li>
-          <li><span class="n">2</span><div><b>신청 서류</b> <span class="d">상장적격성보고서 · 신규상장심사청구서 · 특례상장</span></div></li>
-          <li><span class="n">3</span><div><b>상장 뒤</b> <span class="d">코넥스 공시제도 · 신규상장 통계</span></div></li>
-        </ol>
-      </article>
-
-      <article class="card">
-        <span class="num">2편</span>
-        <h2>코스닥 이전상장</h2>
-        <p class="tag">코넥스에서 코스닥으로, 예심부터 상장 후 관리까지</p>
-        <ol class="steps">
-          <li><span class="n">1</span><div><b>문서 도구</b> <span class="d">샘플 보기 · 고객 자료로 채우기 · 검증</span></div></li>
-          <li><span class="n">2</span><div><b>예심 전 준비</b> <span class="d">지정감사 · 요건 · 주관사 · 실사 · 기술평가</span></div></li>
-          <li><span class="n">3</span><div><b>예심 신청서</b> <span class="d">공양식 Ⅰ~Ⅸ장 작성 · 제출</span></div></li>
-          <li><span class="n">4</span><div><b>심사</b> <span class="d">심사관 질의 · 질적심사 · 업종별 잣대</span></div></li>
-          <li><span class="n">5</span><div><b>증권신고서 · 공모</b> <span class="d">투자위험 · 공모가 · 의무보유 · IR</span></div></li>
-          <li><span class="n">6</span><div><b>상장 · 상장 후</b> <span class="d">첫날 가격 · 관리종목 · 사례와 통계</span></div></li>
-        </ol>
-      </article>
-
-      <article class="card">
-        <span class="num">3편</span>
-        <h2>유가증권시장</h2>
-        <p class="tag">코스피 상장과 기타 유형 상장</p>
-        <ol class="steps">
-          <li><span class="n">1</span><div><b>요건 · 심사</b> <span class="d">형식요건과 질적심사를 따로 봅니다</span></div></li>
-          <li><span class="n">2</span><div><b>상장 기준 · 체크리스트</b> <span class="d">유가증권시장 기준</span></div></li>
-          <li><span class="n">3</span><div><b>세 편이 함께 쓰는 것</b> <span class="d">공시서식 작성기준 · 상법 · 세무 · 주주총회 · 타임라인</span></div></li>
-        </ol>
-      </article>
-    </section>
-
-    <section class="bottom">
-      <article class="card sim">
-        <p class="label">계산 시뮬레이션</p>
-        <h2>숫자로 미리 확인하기</h2>
-        <p class="intro">상장 요건과 공모 조건을 수치로 돌려 봅니다.</p>
-        <div class="chips">
-          <span class="chip">공모가 밴드</span>
-          <span class="chip">비상장사 가치평가</span>
-          <span class="chip">상장일 기준가격</span>
-          <span class="chip">최소공모비율</span>
-          <span class="chip">주주총회 계산</span>
+  <section class="top">
+    <div class="wrap">
+      <nav>
+        <a class="brand" href="#"><span class="mark">X</span>리스팅플로우 X</a>
+        <div class="menu">
+          <a href="#ipo">IPO</a>
+          <a href="#ir">IR</a>
+          <a href="#pr">PR</a>
+          <a href="#disclosure">공시</a>
         </div>
-      </article>
+        <a class="nav-cta" href="mailto:contact@listingflowx.com">도입 문의</a>
+      </nav>
 
-      <article class="card modules">
-        <p class="label">함께 쓰는 운영 모듈</p>
-        <div class="grid">
-          <div class="module"><b>IR</b>IR 상담 · IR Deck 자동 생성 · 명단 배포</div>
-          <div class="module"><b>PR</b>보도자료·기획기사 생성 · 검토 · 기자 배포</div>
-          <div class="module"><b>공시</b>시장별 제도 · 자주 묻는 20유형 · 서술형 문의</div>
+      <div class="hero">
+        <div>
+          <span class="eyebrow"><i></i>IPO · IR · PR · 공시 통합 운영시스템</span>
+          <h1>상장부터 공시까지,<br><em>하나의 흐름</em>으로 운영합니다</h1>
+          <p class="lead">
+            코넥스 상장, 코스닥 이전상장, 유가증권시장 상장의 전 과정을 규정 원문·법령·DART 공시와 함께 안내하고,
+            IR·PR·공시 업무를 같은 시스템 안에서 이어 갑니다.
+          </p>
+          <div class="cta">
+            <a class="btn primary" href="#ipo">서비스 살펴보기 →</a>
+            <a class="btn ghost" href="mailto:contact@listingflowx.com">도입 문의</a>
+          </div>
+          <div class="stats">
+            <div class="stat"><b>3</b><span>시장 · 상장 전 과정</span></div>
+            <div class="stat"><b>52</b><span>업무 화면</span></div>
+            <div class="stat"><b>398</b><span>정리된 항목</span></div>
+            <div class="stat"><b>5</b><span>계산 시뮬레이션</span></div>
+          </div>
         </div>
-      </article>
-    </section>
 
-    <footer>
-      <span>한국거래소 기업실사 점검표 및 작성가이드를 기반으로 구성 · AI 판단은 참고용 1차 분류이며 최종 판단은 담당자 검토가 필요합니다.</span>
-      <span>© 2026 리스팅플로우 X</span>
-    </footer>
-  </main>
+        <aside class="panel" aria-label="상장 로드맵 요약">
+          <div class="ph"><b>상장 로드맵</b><span>코넥스 → 코스닥 → 유가증권</span></div>
+          <div class="flow">
+            <div class="node">
+              <div class="k">1편</div>
+              <div class="t">코넥스 상장</div>
+              <ul><li>요건 · 일정 · 서류</li><li>상장적격성보고서</li><li>상장 후 공시</li></ul>
+            </div>
+            <div class="arrow">›</div>
+            <div class="node">
+              <div class="k">2편</div>
+              <div class="t">코스닥 이전상장</div>
+              <ul><li>예심 준비 · 실사</li><li>예심 신청서 · 심사</li><li>증권신고서 · 공모</li></ul>
+            </div>
+            <div class="arrow">›</div>
+            <div class="node">
+              <div class="k">3편</div>
+              <div class="t">유가증권시장</div>
+              <ul><li>형식요건 · 질적심사</li><li>상장 기준 · 체크리스트</li><li>상법 · 세무 · 주총</li></ul>
+            </div>
+          </div>
+          <div class="pf">
+            <span class="lbl">계산 시뮬레이션</span>
+            <span>공모가 밴드</span><span>비상장사 가치평가</span><span>상장일 기준가격</span><span>최소공모비율</span><span>주주총회</span>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="pillars">
+    <div class="wrap">
+      <div class="head">
+        <h2>네 가지 업무를 한 시스템에서</h2>
+        <p>한국거래소 기업실사 점검표와 작성가이드를 기반으로 구성 · 모든 답에 규정·공시 출처를 함께 제시</p>
+      </div>
+      <div class="grid">
+        <article class="card" id="ipo">
+          <div class="ic">IPO</div>
+          <h3>상장 전 과정 안내</h3>
+          <p>준비, 신청 서류, 심사, 증권신고서, 공모, 상장 후 관리까지 단계별 실무를 안내합니다.</p>
+          <div class="tags"><span>타임라인</span><span>체크리스트</span><span>문서 작성·검증</span></div>
+        </article>
+        <article class="card" id="ir">
+          <div class="ic">IR</div>
+          <h3>IR 자료와 배포</h3>
+          <p>회사 자료를 올리면 IR 자료와 IR Deck 초안을 만들고, 투자자 명단으로 배포합니다.</p>
+          <div class="tags"><span>IR 상담</span><span>Deck 자동 생성</span><span>명단 배포</span></div>
+        </article>
+        <article class="card" id="pr">
+          <div class="ic">PR</div>
+          <h3>보도자료와 기획기사</h3>
+          <p>문의 내용으로 초안을 만들고 담당자 검토를 거쳐 기자에게 보냅니다. 사실관계는 공시와 맞춥니다.</p>
+          <div class="tags"><span>초안 생성</span><span>검토</span><span>기자 배포</span></div>
+        </article>
+        <article class="card" id="disclosure">
+          <div class="ic">공시</div>
+          <h3>공시 제도와 상담</h3>
+          <p>시장별 공시 규정 원문을 정리하고, 자주 묻는 20가지 유형과 서술형 문의에 답합니다.</p>
+          <div class="tags"><span>코넥스·코스닥·유가</span><span>공정공시</span><span>서식 작성</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <span>© 2026 리스팅플로우 X · AI 답변은 참고용 1차 분류이며 최종 판단은 담당자 검토가 필요합니다.</span>
+      <span>contact@listingflowx.com</span>
+    </div>
+  </footer>
+
+</div>
 </body>
 </html>
