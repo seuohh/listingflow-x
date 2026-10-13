@@ -1,0 +1,11 @@
+{
+  "name": "listingflow-x",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev --var SITE_PUBLIC:true",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4.150.0"
+  }
+}
