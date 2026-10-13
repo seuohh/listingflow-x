@@ -98,7 +98,7 @@
       grid-template-columns: 1.1fr 0.9fr;
       gap: 48px;
       align-items: center;
-      padding: 10px 0 16px;
+      padding: 6px 0 12px;
     }
     .hero h1 {
       font-size: clamp(30px, 3.6vw, 46px);
@@ -115,7 +115,7 @@
     .hero .lead {
       font-size: 15.5px;
       color: rgba(255,255,255,0.78);
-      margin: 0 0 20px;
+      margin: 0 0 14px;
       max-width: 560px;
     }
     .cta { display: flex; gap: 12px; flex-wrap: wrap; }
@@ -135,6 +135,51 @@
       border: 1px solid rgba(255,255,255,0.3);
     }
     .btn.ghost:hover { background: rgba(255,255,255,0.08); }
+
+    /* IPO 실무 백서 소개 */
+    .book {
+      display: flex; align-items: center; gap: 20px;
+      margin-top: 2px; padding: 12px 16px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 16px;
+      max-width: 560px;
+    }
+    .book-cover {
+      position: relative; flex: 0 0 76px; width: 76px; height: 106px;
+      border-radius: 4px 8px 8px 4px;
+      overflow: hidden;
+      box-shadow: 8px 10px 24px rgba(0,0,0,0.45), inset 3px 0 0 rgba(255,255,255,0.18);
+      transform: perspective(600px) rotateY(-10deg);
+      background: linear-gradient(160deg, #1b2f6e, #0d1838);
+    }
+    .book-cover img {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1;
+    }
+    .book-fallback {
+      position: absolute; inset: 0; padding: 10px 9px;
+      display: flex; flex-direction: column; justify-content: space-between;
+      color: #fff; text-align: left;
+    }
+    .book-fallback::after {
+      content: ""; position: absolute; left: 0; right: 0; top: 34%; height: 1px;
+      background: linear-gradient(90deg, var(--cyan-400), transparent);
+    }
+    .bf-top { white-space: nowrap; font-size: 6px; font-weight: 700; letter-spacing: 0.12em; color: rgba(255,255,255,0.65); }
+    .bf-title { font-size: 15px; font-weight: 800; line-height: 1.2; letter-spacing: -0.02em; }
+    .bf-bottom { font-size: 7px; color: rgba(255,255,255,0.7); }
+    .book-text { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+    .book-badge {
+      align-self: flex-start;
+      font-size: 11.5px; font-weight: 700; letter-spacing: 0.04em;
+      color: var(--navy-900); background: var(--cyan-400);
+      border-radius: 999px; padding: 2px 9px;
+    }
+    .book-text h3 { margin: 2px 0 0; font-size: 18px; font-weight: 800; letter-spacing: -0.01em; }
+    .book-text p { margin: 0; font-size: 13.5px; color: rgba(255,255,255,0.72); line-height: 1.5; }
+    @media (max-width: 480px) {
+      .book { flex-direction: column; align-items: flex-start; }
+    }
 
 
     /* 히어로 우측: 상장 흐름 패널 */
@@ -293,8 +338,20 @@
             예심 준비 · 실사 · 예심 신청서 · 증권신고서 · 공모까지 단계별로 안내하고,
             IR · PR · 공시 업무를 같은 시스템 안에서 이어 갑니다.
           </p>
-          <div class="cta">
-            <a class="btn primary" href="#ipo">서비스 살펴보기 →</a>
+          <div class="book">
+            <div class="book-cover" aria-hidden="true">
+              <img src="/images/ipo-whitepaper-cover.jpg" alt="" onerror="this.remove()">
+              <div class="book-fallback">
+                <span class="bf-top">LISTINGFLOW X</span>
+                <span class="bf-title">IPO<br>실무 백서</span>
+                <span class="bf-bottom">코넥스 → 코스닥 이전상장</span>
+              </div>
+            </div>
+            <div class="book-text">
+              <span class="book-badge">곧 출간</span>
+              <h3>IPO 실무 백서</h3>
+              <p>코넥스 기업의 코스닥 이전상장 전 과정을 한 권에 담았습니다. 예심 준비부터 공모까지, 실무에서 바로 쓰는 기준과 서식을 정리합니다.</p>
+            </div>
           </div>
         </div>
 
