@@ -82,6 +82,7 @@
       font-size: 15px; font-weight: 900; color: #fff;
       box-shadow: 0 6px 16px rgba(47, 107, 255, 0.35);
     }
+    .brand-sub { font-weight: 500; font-size: 14.5px; color: rgba(255,255,255,0.72); letter-spacing: 0; }
     .menu { display: flex; gap: 28px; font-size: 14.5px; font-weight: 500; color: rgba(255,255,255,0.78); }
     .menu a:hover { color: #fff; }
     .nav-cta {
@@ -215,6 +216,7 @@
     @media (max-width: 1024px) {
       .hero { grid-template-columns: 1fr; gap: 28px; padding: 28px 0 36px; }
       .menu { display: none; }
+      .brand-sub { display: none; }
       .grid { grid-template-columns: repeat(2, 1fr); }
       .page { min-height: auto; }
     }
@@ -232,7 +234,7 @@
   <section class="top">
     <div class="wrap">
       <nav>
-        <a class="brand" href="#"><span class="mark">X</span>리스팅플로우 X</a>
+        <a class="brand" href="#"><span class="mark">X</span>리스팅플로우 X<span class="brand-sub"> - IPO · IR · PR · 공시 통합 운영시스템</span></a>
         <div class="menu">
           <a href="#ipo">IPO</a>
           <a href="#ir">IR</a>
@@ -252,7 +254,6 @@
           </p>
           <div class="cta">
             <a class="btn primary" href="#ipo">서비스 살펴보기 →</a>
-            <a class="btn ghost" href="/contact">도입 문의</a>
           </div>
         </div>
 
