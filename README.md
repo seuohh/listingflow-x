@@ -24,6 +24,11 @@ GitHub `main` 브랜치에 푸시하면 Cloudflare Workers Builds 가 자동으�
 
 현재 사이트는 **비공개** 상태이며, 모든 주소에서 404 ("준비 중입니다.") 를 반환합니다.
 
+비공개 상태에서 실제 배포된 모습을 확인하려면 Cloudflare 미리보기 주소를 사용합니다.
+Cloudflare 대시보드 > Workers & Pages > listingflow-x > Deployments 에서 최신 버전의
+미리보기 링크(`<버전해시>-listingflow-x.seuohh.workers.dev`)를 열면 사이트가 보입니다.
+이 주소는 무작위 해시가 붙어 외부에서 추측할 수 없으며, 검색 엔진 색인도 막혀 있습니다.
+
 공개하려면 `wrangler.jsonc` 의 `vars.SITE_PUBLIC` 을 `"true"` 로 바꾸고 푸시하면 됩니다.
 다시 비공개로 돌리려면 `"false"` 로 바꾸고 푸시합니다.
 
