@@ -3,16 +3,214 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ListingFlow X</title>
+  <title>리스팅플로우 X</title>
+  <meta name="description" content="IPO·IR·PR·공시 통합 운영시스템. 코넥스 상장, 코스닥 이전상장, 유가증권시장 상장 가이드와 계산 시뮬레이션.">
   <style>
-    body { font-family: system-ui, sans-serif; margin: 0; padding: 40px 16px; color: #222; }
-    main { max-width: 800px; margin: 0 auto; }
+    :root {
+      --bg: #f6f7f9;
+      --surface: #ffffff;
+      --text: #1b1f27;
+      --muted: #5c6370;
+      --line: #e3e6ea;
+      --accent: #1f5eff;
+      --accent-soft: #e8efff;
+      --radius: 14px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f1218;
+        --surface: #181c25;
+        --text: #eef1f5;
+        --muted: #9aa3b2;
+        --line: #2a303c;
+        --accent: #6f93ff;
+        --accent-soft: #1d2740;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", system-ui, sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    main {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 64px 20px 80px;
+    }
+
+    /* 헤더 */
+    .hero { margin-bottom: 48px; }
+    .hero .eyebrow {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-size: clamp(30px, 5vw, 42px);
+      line-height: 1.25;
+      margin: 0 0 12px;
+      letter-spacing: -0.02em;
+    }
+    .hero p {
+      font-size: 18px;
+      color: var(--muted);
+      margin: 0;
+    }
+    .hero p .sep { margin: 0 6px; opacity: 0.5; }
+
+    /* 섹션 */
+    section { margin-bottom: 40px; }
+    .section-title {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin: 0 0 14px;
+    }
+
+    /* 카드 */
+    .cards {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+    .card {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 22px 22px 20px;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    }
+    .card .num {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.04em;
+    }
+    .card h2 {
+      font-size: 20px;
+      margin: 0;
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+    }
+    .card .desc {
+      font-size: 14px;
+      color: var(--muted);
+      margin: 0;
+    }
+    .card .status {
+      margin-top: auto;
+      align-self: flex-start;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 3px 10px;
+    }
+
+    /* 시뮬레이션 카드 */
+    .card.tool {
+      flex-direction: row;
+      align-items: center;
+      gap: 18px;
+      padding: 22px 24px;
+    }
+    .card.tool .icon {
+      flex: 0 0 48px;
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      display: grid;
+      place-items: center;
+      font-size: 22px;
+      font-weight: 700;
+    }
+    .card.tool .body { display: flex; flex-direction: column; gap: 4px; }
+    .card.tool h2 { font-size: 20px; }
+    @media (max-width: 480px) {
+      .card.tool { flex-direction: column; align-items: flex-start; }
+    }
+
+    footer {
+      margin-top: 64px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+      font-size: 13px;
+      color: var(--muted);
+    }
   </style>
 </head>
 <body>
   <main>
-    <h1>ListingFlow X</h1>
-    <p>여기에 내용을 채워 넣으세요.</p>
+    <header class="hero">
+      <span class="eyebrow">ListingFlow X</span>
+      <h1>리스팅플로우 X</h1>
+      <p>IPO<span class="sep">·</span>IR<span class="sep">·</span>PR<span class="sep">·</span>공시 통합 운영시스템</p>
+    </header>
+
+    <section aria-labelledby="series-title">
+      <h2 class="section-title" id="series-title">상장 시리즈</h2>
+      <div class="cards">
+        <a class="card" href="#">
+          <span class="num">1편</span>
+          <h2>코넥스 상장</h2>
+          <p class="desc">중소·벤처기업을 위한 첫 상장 단계</p>
+          <span class="status">준비 중</span>
+        </a>
+        <a class="card" href="#">
+          <span class="num">2편</span>
+          <h2>코스닥 이전상장</h2>
+          <p class="desc">코넥스에서 코스닥으로 올라가는 과정</p>
+          <span class="status">준비 중</span>
+        </a>
+        <a class="card" href="#">
+          <span class="num">3편</span>
+          <h2>유가증권시장</h2>
+          <p class="desc">코스피 상장을 위한 요건과 절차</p>
+          <span class="status">준비 중</span>
+        </a>
+      </div>
+    </section>
+
+    <section aria-labelledby="tool-title">
+      <h2 class="section-title" id="tool-title">도구</h2>
+      <a class="card tool" href="#">
+        <span class="icon" aria-hidden="true">∑</span>
+        <span class="body">
+          <h2>계산 시뮬레이션</h2>
+          <p class="desc">상장 요건과 비용을 수치로 미리 확인해 보는 계산기</p>
+        </span>
+      </a>
+    </section>
+
+    <footer>
+      © 2026 리스팅플로우 X
+    </footer>
   </main>
 </body>
 </html>

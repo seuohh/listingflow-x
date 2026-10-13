@@ -6,7 +6,7 @@ Cloudflare Workers(정적 자산) 로 배포되는 정적 사이트입니다.
 
 | 경로 | 용도 | 상태 |
 |---|---|---|
-| `public/index.html` | 메인 페이지 (배포되는 파일) | 뼈대만 있음 |
+| `public/index.html` | 메인 페이지 (배포되는 파일) | 랜딩 페이지 작성됨 |
 | `src/index.js` | 도메인 리다이렉트 처리 Worker 코드 | 완료 |
 | `listingflow-x.txt` | 기획 / 메모 (배포되지 않음) | 비어 있음 |
 | `wrangler.jsonc` | Cloudflare Workers 배포 설정 (도메인 포함) | 완료 |
