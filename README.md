@@ -19,7 +19,18 @@ GitHub `main` 브랜치에 푸시하면 Cloudflare Workers Builds 가 자동으�
 - Cloudflare 프로젝트: Workers & Pages > listingflow-x
 - 대표 주소: https://listingflowx.com
 
+## 공개 / 비공개 전환
+
+현재 사이트는 **비공개** 상태이며, 모든 주소에서 404 ("준비 중입니다.") 를 반환합니다.
+
+공개하려면 `wrangler.jsonc` 의 `vars.SITE_PUBLIC` 을 `"true"` 로 바꾸고 푸시하면 됩니다.
+다시 비공개로 돌리려면 `"false"` 로 바꾸고 푸시합니다.
+
+로컬에서 미리 보려면 `npx wrangler dev --var SITE_PUBLIC:true` 를 실행합니다.
+
 ## 도메인
+
+아래 동작은 공개 상태일 때 적용됩니다.
 
 | 도메인 | 동작 |
 |---|---|
