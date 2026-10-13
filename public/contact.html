@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>도입 문의 - 리스팅플로우 X</title>
+  <meta name="description" content="리스팅플로우 X 도입 상담, 데모 요청, 제휴·협업, 언론 문의를 남겨 주시면 확인 후 이메일로 회신드립니다.">
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <style>
+    :root {
+      --navy-900: #0b1430;
+      --navy-800: #101d45;
+      --navy-700: #182a5e;
+      --blue-500: #2f6bff;
+      --cyan-400: #3ad1ff;
+      --text: #eaeef8;
+      --muted: rgba(255,255,255,0.68);
+      --line: rgba(255,255,255,0.14);
+      --field-bg: rgba(255,255,255,0.06);
+      --field-line: rgba(255,255,255,0.18);
+      --error: #ff8a8a;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      font-family: "Pretendard", "Pretendard Variable", "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", system-ui, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(900px 500px at 85% -10%, rgba(58, 209, 255, 0.20), transparent 60%),
+        radial-gradient(700px 400px at 10% 110%, rgba(47, 107, 255, 0.26), transparent 60%),
+        linear-gradient(160deg, var(--navy-900) 0%, var(--navy-800) 60%, var(--navy-700) 100%);
+      background-attachment: fixed;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      word-break: keep-all;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 28px; }
+
+    nav { display: flex; align-items: center; justify-content: space-between; height: 58px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 18px; letter-spacing: -0.01em; }
+    .brand .mark {
+      width: 30px; height: 30px; border-radius: 9px;
+      background: linear-gradient(135deg, var(--cyan-400), var(--blue-500));
+      display: grid; place-items: center; font-size: 15px; font-weight: 900; color: #fff;
+      box-shadow: 0 6px 16px rgba(47, 107, 255, 0.35);
+    }
+    .back { font-size: 14px; color: var(--muted); }
+    .back:hover { color: #fff; }
+
+    .head { text-align: center; padding: 28px 0 22px; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 12.5px; font-weight: 700; letter-spacing: 0.14em; color: #9cc8ff;
+    }
+    .eyebrow::before, .eyebrow::after { content: ""; width: 28px; height: 1px; background: rgba(156,200,255,0.5); }
+    .head h1 { font-size: clamp(28px, 3.4vw, 40px); margin: 12px 0 10px; letter-spacing: -0.03em; font-weight: 800; }
+    .head p { margin: 0 auto; max-width: 560px; color: var(--muted); font-size: 15px; }
+
+    .card {
+      max-width: 620px; margin: 0 auto 36px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 28px 28px 24px;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.35);
+    }
+    .field { margin-bottom: 16px; }
+    label { display: block; font-size: 13.5px; font-weight: 600; margin-bottom: 7px; }
+    label .req { color: var(--cyan-400); }
+    input[type="text"], input[type="email"], select, textarea {
+      width: 100%;
+      font: inherit; font-size: 15px; color: #fff;
+      background: var(--field-bg);
+      border: 1px solid var(--field-line);
+      border-radius: 11px;
+      padding: 12px 14px;
+      outline: none;
+      transition: border-color .15s ease, box-shadow .15s ease;
+    }
+    input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.38); }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--cyan-400);
+      box-shadow: 0 0 0 3px rgba(58,209,255,0.18);
+    }
+    select { appearance: none; -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23ffffff' stroke-opacity='.7' stroke-width='1.6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
+    select option { color: #121a2e; }
+    textarea { min-height: 150px; resize: vertical; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media (max-width: 560px) { .row { grid-template-columns: 1fr; } }
+
+    .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+
+    .submit-row { margin-top: 6px; }
+    .btn {
+      width: 100%; display: inline-flex; justify-content: center; align-items: center; gap: 8px;
+      font: inherit; font-size: 15.5px; font-weight: 700;
+      border: 0; border-radius: 12px; padding: 14px 20px; cursor: pointer;
+      background: #fff; color: var(--navy-900);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.25);
+      transition: transform .15s ease, opacity .15s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn:disabled { opacity: .6; cursor: default; transform: none; }
+    .note { margin: 14px 0 0; font-size: 12.5px; color: var(--muted); text-align: center; }
+    .error { margin: 12px 0 0; font-size: 13.5px; color: var(--error); text-align: center; }
+
+    .success { text-align: center; padding: 12px 0 4px; }
+    .success .glyph {
+      width: 56px; height: 56px; margin: 0 auto 14px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--cyan-400), var(--blue-500));
+      display: grid; place-items: center; font-size: 26px; color: #fff;
+    }
+    .success h2 { margin: 0 0 8px; font-size: 22px; letter-spacing: -0.02em; }
+    .success p { margin: 0 0 18px; color: var(--muted); }
+    .success a { display: inline-block; font-size: 14px; font-weight: 600; color: #9cc8ff; }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 14px 0 20px; font-size: 12.5px; color: var(--muted);
+    }
+    footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    footer a:hover { color: #fff; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav>
+      <a class="brand" href="/"><span class="mark">X</span>리스팅플로우 X</a>
+      <a class="back" href="/">← 홈으로 돌아가기</a>
+    </nav>
+
+    <header class="head">
+      <span class="eyebrow">CONTACT</span>
+      <h1>도입 문의</h1>
+      <p>리스팅플로우 X 도입 상담, 데모 요청, 제휴·협업, 언론 문의를 남겨 주시면 확인 후 이메일로 회신드립니다.</p>
+    </header>
+
+    <div class="card">
+      <form id="contactForm" action="https://formspree.io/f/myeylopr" method="POST">
+        <div class="row">
+          <div class="field">
+            <label for="fName">이름 <span class="req">*</span></label>
+            <input type="text" id="fName" name="name" placeholder="예: 홍길동" maxlength="40" required autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="fEmail">이메일 <span class="req">*</span></label>
+            <input type="email" id="fEmail" name="email" placeholder="you@example.com" required autocomplete="email">
+          </div>
+        </div>
+        <div class="row">
+          <div class="field">
+            <label for="fCompany">회사명 (선택)</label>
+            <input type="text" id="fCompany" name="company" placeholder="예: (주)홍길동컴퍼니" maxlength="60" autocomplete="organization">
+          </div>
+          <div class="field">
+            <label for="fType">문의 유형</label>
+            <select id="fType" name="inquiry_type">
+              <option value="도입 상담">도입 상담</option>
+              <option value="데모 요청">데모 요청</option>
+              <option value="제휴 · 협업">제휴 · 협업</option>
+              <option value="언론 · 미디어 문의">언론 · 미디어 문의</option>
+              <option value="기타">기타</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="fMessage">문의 내용 <span class="req">*</span></label>
+          <textarea id="fMessage" name="message" placeholder="회사 상황과 궁금한 점을 자유롭게 적어 주세요. 예) 코스닥 이전상장을 준비 중이며 예심 신청서 작성 지원이 필요합니다." required></textarea>
+        </div>
+
+        <!-- 스팸 방지용 허니팟 필드 (사람 눈에는 보이지 않음) -->
+        <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input type="hidden" name="_subject" value="[리스팅플로우 X] 도입 문의가 도착했습니다">
+        <input type="hidden" name="site" value="listingflowx.com">
+
+        <div class="submit-row">
+          <button type="submit" class="btn" id="submitBtn">문의 보내기</button>
+        </div>
+        <p class="note">보내주신 이메일로만 회신드리며, 입력하신 정보는 문의 응대 외 다른 목적으로 사용하지 않습니다.</p>
+        <p class="error" id="formError" hidden>전송에 실패했습니다. 잠시 후 다시 시도하시거나 <a href="mailto:seuohh@gmail.com">seuohh@gmail.com</a> 으로 직접 연락해 주세요.</p>
+      </form>
+
+      <div class="success" id="successCard" hidden>
+        <div class="glyph">✓</div>
+        <h2>문의가 접수되었습니다</h2>
+        <p>보내주신 내용을 확인한 뒤 입력하신 이메일로 회신드리겠습니다.</p>
+        <a href="/">← 홈으로 돌아가기</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <span>© 2026 리스팅플로우 X</span>
+      <a href="mailto:seuohh@gmail.com">seuohh@gmail.com</a>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      "use strict";
+      var form = document.getElementById("contactForm");
+      var submitBtn = document.getElementById("submitBtn");
+      var errorEl = document.getElementById("formError");
+      var successEl = document.getElementById("successCard");
+
+      form.addEventListener("submit", async function (e) {
+        e.preventDefault();
+        errorEl.hidden = true;
+        submitBtn.disabled = true;
+        submitBtn.textContent = "보내는 중...";
+        try {
+          var res = await fetch(form.action, {
+            method: "POST",
+            body: new FormData(form),
+            headers: { "Accept": "application/json" }
+          });
+          if (!res.ok) throw new Error("submit failed");
+          form.hidden = true;
+          successEl.hidden = false;
+        } catch (err) {
+          errorEl.hidden = false;
+          submitBtn.disabled = false;
+          submitBtn.textContent = "문의 보내기";
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
