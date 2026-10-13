@@ -48,6 +48,8 @@
       display: grid; place-items: center; font-size: 15px; font-weight: 900; color: #fff;
       box-shadow: 0 6px 16px rgba(47, 107, 255, 0.35);
     }
+    .brand-sub { font-weight: 500; font-size: 14.5px; color: rgba(255,255,255,0.72); letter-spacing: 0; }
+    @media (max-width: 1024px) { .brand-sub { display: none; } }
     .back { font-size: 14px; color: var(--muted); }
     .back:hover { color: #fff; }
 
@@ -132,7 +134,7 @@
 <body>
   <div class="wrap">
     <nav>
-      <a class="brand" href="/"><span class="mark">X</span>리스팅플로우 X</a>
+      <a class="brand" href="/"><span class="mark">X</span>리스팅플로우 X<span class="brand-sub"> - IPO · IR · PR · 공시 통합 운영시스템</span></a>
       <a class="back" href="/">← 홈으로 돌아가기</a>
     </nav>
 
